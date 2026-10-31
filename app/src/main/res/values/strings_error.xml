@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Genéricos -->
+    <string name="error_unknown">Something went wrong. Try again in a few moments.</string>
+    <string name="error_network_no_connection">No connection. Check your network and try again.</string>
+    <string name="error_network_timeout">The server is taking too long to respond. Try again.</string>
+
+    <!-- Errores de dispositivos -->
+    <string name="error_device_not_connected">Could not establish the connection. Make sure the device is turned on and within range.</string>
+    <string name="error_device_connection_lost">The connection was lost. Make sure the device is still turned on and try again.</string>
+    <string name="error_device_permission_denied">The app does not have permission. Check the permissions in your device settings.</string>
+    <string name="error_device_busy">The device is busy. Wait a few seconds and try again.</string>
+    <string name="error_device_opertation_timeout">The operation timed out. Check the connection and try again.</string>
+    <string name="error_device_unsupported_device">This device is not compatible with the connection required by the app.</string>
+
+    <!-- Errores de HTTP controlados-->
+    <string name="error_network_403">You don\'t have permission to do this. If you think you should, contact your administrator.</string>
+    <string name="error_network_503">The service is temporarily unavailable. Please try again in a few minutes.</string>
+
+    <!-- Errores de datos respuesta -->
+    <string name="error_response_not_data_found">No results found.</string>
+    <string name="error_response_body_request_empty">No data was received in the request.</string>
+
+    <!-- Errores de API Login -->
+    <string name="error_login_failed">Incorrect username or password. Check them and try again.</string>
+    <string name="error_user_not_active">Your user is not active. Contact your administrator.</string>
+    <string name="error_user_not_plzs">The plaza has not been specified in the request.</string>
+    <string name="error_user_menu_not_configuration">Your user has no menu configured. Contact your administrator.</string>
+
+    <!-- Errores de API Subida Fichero -->
+    <string name="error_file_not_upload">The document could not be uploaded.</string>
+
+    <!-- Errores de API Muelle -->
+    <string name="error_dock_barcode_empty">The specified barcode could not be found.</string>
+
+    <!-- Errores de API Incidencia -->
+    <string name="error_incidence_aplication_code_empty">The application code is missing.</string>
+
+</resources>

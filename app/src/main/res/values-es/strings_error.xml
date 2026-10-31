@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Genéricos -->
+    <string name="error_unknown">Algo ha fallado. Inténtalo de nuevo en unos momentos.</string>
+
+    <!-- Conexion -->
+    <string name="error_network_no_connection">Sin conexión. Comprueba tu red e inténtalo de nuevo.</string>
+    <string name="error_network_timeout">El servidor está tardando demasiado en responder. Inténtalo de nuevo.</string>
+
+    <!-- Errores de dispositivos -->
+    <string name="error_device_not_connected">No se ha podido establecer la conexión. Comprueba que el dispositivo esté encendido y dentro del alcance.</string>
+    <string name="error_device_connection_lost">Se ha perdido la conexión. Comprueba que el dispositivo siga encendido y vuelve a intentarlo.</string>
+    <string name="error_device_permission_denied">La aplicación no tiene permiso. Revisa los permisos en los ajustes.</string>
+    <string name="error_device_busy">El dispositivo está ocupado. Espera unos segundos e inténtalo de nuevo.</string>
+    <string name="error_device_opertation_timeout">La operación ha superado el tiempo de espera. Comprueba la conexión e inténtalo de nuevo.</string>
+    <string name="error_device_unsupported_device">Este dispositivo no es compatible con la conexión requerida por la aplicación.</string>
+
+    <!-- Errores de HTTP controlados -->
+    <string name="error_network_403">No tienes permisos para realizar esta acción. Si crees que deberías tenerlos, contacta con tu administrador.</string>
+    <string name="error_network_503">El servicio no está disponible temporalmente. Inténtalo de nuevo en unos minutos.</string>
+
+    <!-- Errores de datos respuesta -->
+    <string name="error_response_not_data_found">No se han encontrado resultados.</string>
+    <string name="error_response_body_request_empty">El cuerpo de la solicitud está vacío.</string>
+
+    <!-- Errores de API Login -->
+    <string name="error_login_failed">Usuario o contraseña incorrectos. Revísalos e inténtalo de nuevo.</string>
+    <string name="error_user_not_active">Tu usuario no está activo. Contacta con tu administrador.</string>
+    <string name="error_user_not_plzs">No se ha indicado la plaza en la solicitud.</string>
+    <string name="error_user_menu_not_configuration">Tu usuario no tiene menú configurado. Contacta con tu administrador.</string>
+
+    <!-- Errores de API Subida Fichero -->
+    <string name="error_file_not_upload">El documento no se ha podido subir.</string>
+
+    <!-- Errores de API Muelle -->
+    <string name="error_dock_barcode_empty">No se ha encontrado el código de barras indicado.</string>
+
+    <!-- Errores de API Incidencia -->
+    <string name="error_incidence_aplication_code_empty">Falta indicar el código de aplicación.</string>
+</resources>
