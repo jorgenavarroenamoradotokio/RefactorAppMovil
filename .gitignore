@@ -1,0 +1,124 @@
+# ==========================================
+# ANDROID STUDIO / INTELLIJ IDEA
+# ==========================================
+
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea_modules/
+out/
+
+# Android Studio
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+build/
+*/build/
+
+# ==========================================
+# GRADLE
+# ==========================================
+
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# ==========================================
+# ANDROID BUILD OUTPUTS
+# ==========================================
+
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+*.jar
+*.war
+*.ear
+
+# ==========================================
+# ANDROID LOCAL CONFIGURATION
+# ==========================================
+
+local.properties
+google-services.json
+crashlytics.properties
+
+# Keystores and signing credentials
+*.jks
+*.keystore
+key.properties
+keystore.properties
+
+# ==========================================
+# JAVA
+# ==========================================
+
+*.class
+hs_err_pid*
+replay_pid*
+
+# ==========================================
+# LOGS AND TEMPORARY FILES
+# ==========================================
+
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# ANDROID EMULATORS
+# ==========================================
+
+*.hprof
+*.lock
+
+# ==========================================
+# CLAUDE CODE - IGNORE EVERYTHING
+# ==========================================
+
+.claude/
+.claude
+CLAUDE.md
+CLAUDE.local.md
+.claude.json
+.claudeignore
+.claude/settings.json
+.claude/settings.local.json
+
+# Claude Code local configuration and state
+.claude/*
+.claude/**
+
+# Claude temporary and debug files
+.claude-debug.log
+.claude-project
+.claude-session*
+.claude-history
+.claude-cache/
+
+# Claude generated files
+.claude-code/
+.claude-worktrees/
+
+# ==========================================
+# OS
+# ==========================================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
