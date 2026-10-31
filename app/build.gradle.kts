@@ -77,7 +77,7 @@ if (keystoreProperties == null) {
 android {
     namespace = "com.redur.electra"
     compileSdk {
-        version = release(37) {
+        version = release(36) {
             minorApiLevel = 1
         }
     }
