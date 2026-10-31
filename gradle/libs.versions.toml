@@ -13,7 +13,7 @@ navigation = "2.10.2"
 hilt = "2.60.1"
 
 # Log
-timber = "5.0.1"
+timber = "4.7.1"
 
 # Retrofit2
 retrofit2 = "3.0.0"
