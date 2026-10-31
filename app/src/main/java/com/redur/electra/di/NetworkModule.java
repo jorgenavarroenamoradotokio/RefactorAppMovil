@@ -22,7 +22,6 @@ import timber.log.Timber;
 @Module
 @InstallIn(SingletonComponent.class)
 public final class NetworkModule {
-
     private NetworkModule() {}
 
     @Provides
