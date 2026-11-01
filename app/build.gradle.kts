@@ -77,7 +77,7 @@ if (keystoreProperties == null) {
 android {
     namespace = "com.redur.electra"
     compileSdk {
-        version = release(37) {
+        version = release(36) {
             minorApiLevel = 1
         }
     }
@@ -153,6 +153,8 @@ android {
     testBuildType = "dev"
     testOptions {
         unitTests.isReturnDefaultValues = true
+        // Robolectric necesita los recursos de la app para inflar layouts en los tests de UI
+        unitTests.isIncludeAndroidResources = true
     }
 }
 

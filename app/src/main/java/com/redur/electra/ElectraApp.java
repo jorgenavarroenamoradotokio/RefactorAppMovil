@@ -7,6 +7,9 @@ import com.redur.electra.core.logger.LoggingInitializer;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.HiltAndroidApp;
+
+@HiltAndroidApp
 public class ElectraApp extends Application {
 
     @Inject

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Hoja inferior genérica (GenericBottomSheet): icono, pregunta o título, mensaje, detalles
+    opcionales y hasta tres acciones apiladas a todo el ancho: principal, destructiva (roja) y
+    secundaria.
+    Lo que no se configura se oculta desde código.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.sheet.GenericBottomSheet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/screen_padding_horizontal"
+        android:paddingBottom="@dimen/spacing_l">
+
+        <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/image_info_icon"
+            android:layout_width="@dimen/icon_badge_size"
+            android:layout_height="@dimen/icon_badge_size"
+            android:background="@drawable/bg_icon_badge"
+            android:importantForAccessibility="no"
+            android:scaleType="center"
+            app:tint="?attr/colorPrimary"
+            tools:src="@drawable/ic_app_server" />
+
+        <TextView
+            android:id="@+id/text_info_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:accessibilityHeading="true"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceHeadlineSmall"
+            android:textColor="?attr/colorOnSurface"
+            tools:text="Entorno conectado" />
+
+        <TextView
+            android:id="@+id/text_info_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            tools:text="Los datos se envían a este servidor." />
+
+        <LinearLayout
+            android:id="@+id/layout_info_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:background="@drawable/bg_info_details"
+            android:divider="@drawable/divider_spacing_s"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_m"
+            android:showDividers="middle"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <include layout="@layout/item_info_detail" />
+
+        </LinearLayout>
+
+        <!-- Los separadores solo se pintan entre botones visibles: ocultar uno no deja huecos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_l"
+            android:divider="@drawable/divider_spacing_s"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_info_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/button_height"
+                android:stateListAnimator="@animator/scale_on_press"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                app:cornerRadius="@dimen/corner_radius_m"
+                tools:text="Imprimir" />
+
+            <!-- Acción irreversible: rojo del tema (colorError), que ya se adapta al modo oscuro -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_info_destructive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/button_height"
+                android:stateListAnimator="@animator/scale_on_press"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnError"
+                app:backgroundTint="?attr/colorError"
+                app:cornerRadius="@dimen/corner_radius_m"
+                tools:text="Descartar" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_info_secondary"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/button_height"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                app:cornerRadius="@dimen/corner_radius_m"
+                tools:text="Cancelar" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
