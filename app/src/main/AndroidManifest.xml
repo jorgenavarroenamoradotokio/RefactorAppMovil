@@ -24,6 +24,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.home.HomeActivity" />
     </application>
 
 </manifest>

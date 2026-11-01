@@ -1,23 +1,22 @@
 package com.redur.electra.ui.home;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
-import androidx.activity.SystemBarStyle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.redur.electra.BuildConfig;
 import com.redur.electra.R;
-import com.redur.electra.core.ui.SystemBarInsets;
+import com.redur.electra.core.ui.BasicActivity;
 import com.redur.electra.databinding.ActivityHomeBinding;
+import com.redur.electra.ui.profile.ProfileActivity;
 import com.redur.electra.ui.sheet.GenericBottomSheet;
 import com.redur.electra.ui.toolbar.HomeToolbarController;
 
@@ -27,63 +26,45 @@ import dagger.hilt.android.AndroidEntryPoint;
 import timber.log.Timber;
 
 @AndroidEntryPoint
-public class HomeActivity extends AppCompatActivity implements HomeToolbarController.Listener {
+public class HomeActivity extends BasicActivity<ActivityHomeBinding> implements HomeToolbarController.Listener {
     private static final String REQUEST_LOGOUT = "home_logout";
     private static final String REQUEST_SYSTEM = "home_system";
 
-    private ActivityHomeBinding binding;
     private HomeViewModel viewModel;
     private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Forzamos iconos de color blanco
-        EdgeToEdge.enable(this, SystemBarStyle.dark(Color.TRANSPARENT));
-
         super.onCreate(savedInstanceState);
-        binding = ActivityHomeBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         NavHostFragment navHost = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host);
         navController = Objects.requireNonNull(navHost).getNavController();
 
-        applyWindowInsets();
-
         // Incluimos el toolbar y la funcionalidad de los iconos asociados a ella
-        new HomeToolbarController(binding.appBar.toolbar, this).setup();
+        getBinding().appBar.toolbar.setTitle(R.string.app_name);
+        new HomeToolbarController(getBinding().appBar.toolbar, this).setup();
 
         setupBackNavigation();
         setupLogoutConfirmation();
     }
 
-    /**
-     * Aparta el contenido de las barras del sistema, necesario al trabajar de borde a borde.
-     * <p>
-     * Con {@link EdgeToEdge} la ventana se dibuja detrás de la status bar, la barra de navegación y
-     * el notch, y Android ya no desplaza el contenido por nosotros. A partir de targetSdk 35 el
-     * sistema lo impone aunque no se active, así que este reparto de márgenes es obligatorio.
-     * <p>
-     * El fondo del AppBar se extiende bajo la status bar y solo su contenido baja lo necesario. El
-     * contenido deja libre abajo lo que ocupe más, la botonera o el teclado: con edge-to-edge
-     * {@code adjustResize} ya no redimensiona la ventana, por eso el teclado se gestiona aquí. Se
-     * toma el máximo y no la suma porque el teclado se dibuja por encima de la botonera.
-     * <p>
-     * Los insets se consumen para que ninguna vista hija vuelva a aplicarlos.
-     */
+    @NonNull
+    @Override
+    protected ActivityHomeBinding inflateBinding(@NonNull LayoutInflater inflater) {
+        return ActivityHomeBinding.inflate(inflater);
+    }
 
-    private void applyWindowInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (root, windowInsets) -> {
-            Insets bars = SystemBarInsets.of(windowInsets);
-            binding.appBar.getRoot().setPadding(bars.left, bars.top, bars.right, 0);
-            binding.navHost.setPadding(bars.left, 0, bars.right, 0);
+    @Nullable
+    @Override
+    protected View getAppBar() {
+        return getBinding().appBar.getRoot();
+    }
 
-            // Con edge-to-edge adjustResize no encoge la ventana: el contenido deja sitio al teclado
-            // para que los campos y las acciones del pie no queden debajo
-            Insets ime = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
-            binding.content.setPadding(0, 0, 0, Math.max(bars.bottom, ime.bottom));
-            return WindowInsetsCompat.CONSUMED;
-        });
+    @NonNull
+    @Override
+    protected View getBody() {
+        return getBinding().navHost;
     }
 
     /**
@@ -91,7 +72,8 @@ public class HomeActivity extends AppCompatActivity implements HomeToolbarContro
      */
     @Override
     public void onProfileClick() {
-        Timber.d("Toolbar: perfil pulsado");
+        Timber.d("[TOOLBAR] perfil pulsado");
+        startActivity(new Intent(this, ProfileActivity.class));
     }
 
     /**
@@ -99,7 +81,7 @@ public class HomeActivity extends AppCompatActivity implements HomeToolbarContro
      */
     @Override
     public void onEnvironmentClick() {
-        Timber.d("Toolbar: entorno pulsado");
+        Timber.d("[TOOLBAR] entorno pulsado");
         GenericBottomSheet.builder(REQUEST_SYSTEM)
                 .icon(R.drawable.ic_app_server)
                 .title(R.string.system_title)
@@ -119,7 +101,6 @@ public class HomeActivity extends AppCompatActivity implements HomeToolbarContro
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Timber.d("Ha pulsado el btn de retroceso");
                 if (!navController.popBackStack()) {
                     GenericBottomSheet.builder(REQUEST_LOGOUT)
                             .icon(R.drawable.ic_app_logout)
