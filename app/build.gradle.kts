@@ -153,6 +153,8 @@ android {
     testBuildType = "dev"
     testOptions {
         unitTests.isReturnDefaultValues = true
+        // Robolectric necesita los recursos de la app para inflar layouts en los tests de UI
+        unitTests.isIncludeAndroidResources = true
     }
 }
 

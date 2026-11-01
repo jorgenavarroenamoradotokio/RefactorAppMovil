@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Fila etiqueta/valor de InfoBottomSheet. Apilada y no en columnas para que valores largos
+    (URLs, códigos) no se corten. TalkBack la lee como un único elemento.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:screenReaderFocusable="true">
+
+    <TextView
+        android:id="@+id/text_detail_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceLabelMedium"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        tools:text="Titulo del label" />
+
+    <TextView
+        android:id="@+id/text_detail_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
+        android:textColor="?attr/colorOnSurface"
+        tools:text="Contenido del label" />
+
+</LinearLayout>

@@ -2,7 +2,27 @@
 <resources>
     <string name="app_name">Electra</string>
 
+    <!-- Inicio -->
+    <string name="home_greeting">Hello, %1$s</string>
+    <string name="home_hint">Open the menu to choose a task.</string>
+
     <!-- Toolbar -->
     <string name="toolbar_environment">Connected environment</string>
     <string name="toolbar_profile">Profile</string>
+
+    <!-- Acciones genericas-->
+    <string name="cancel">Cancel</string>
+    <string name="accept">Accept</string>
+
+    <!-- Informacion del sistema -->
+    <string name="system_title">Connected environment</string>
+    <string name="system_message">Data is sent to this server.</string>
+    <string name="system_environment">Environment</string>
+    <string name="system_server">Server</string>
+
+    <!-- Cerrar sesión -->
+    <string name="logout_title">Log out?</string>
+    <string name="logout_message">You will need to sign in again to keep working.</string>
+    <string name="logout_confirm">Log out</string>
+
 </resources>
