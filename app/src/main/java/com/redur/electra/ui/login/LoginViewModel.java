@@ -20,7 +20,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 public class LoginViewModel extends ViewModel {
 
     private final MutableLiveData<LoginFormState> formState = new MutableLiveData<>(LoginFormState.EMPTY);
-    private final MutableLiveData<UiState> loginState = new MutableLiveData<>(new UiState.Idle());
+    private final MutableLiveData<UiState<String>> loginState = new MutableLiveData<>(new UiState.Idle<>());
 
     @Inject
     public LoginViewModel() {
@@ -34,9 +34,10 @@ public class LoginViewModel extends ViewModel {
     }
 
     /**
-     * Estado de la petición API (Idle → Loading → Success/Error).
+     * Estado de la petición API (Idle → Loading → Success/Error). El éxito lleva el usuario
+     * autenticado; se sustituirá por la sesión cuando exista la capa de autenticación.
      */
-    public LiveData<UiState> getLoginState() {
+    public LiveData<UiState<String>> getLoginState() {
         return loginState;
     }
 
@@ -55,7 +56,7 @@ public class LoginViewModel extends ViewModel {
 
         if (validation.isValid()) {
             // Pendiente: aún no existe capa de autenticación contra la API; se acepta el acceso
-            loginState.setValue(new UiState.Success());
+            loginState.setValue(new UiState.Success<>(username));
         }
         return validation;
     }

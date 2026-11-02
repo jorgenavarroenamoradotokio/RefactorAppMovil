@@ -18,7 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.redur.electra.databinding.BottomGenericSheetBinding;
-import com.redur.electra.databinding.ItemInfoDetailBinding;
+import com.redur.electra.databinding.ItemInfoGenericSheetBinding;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -145,7 +145,7 @@ public class GenericBottomSheet extends BottomSheetDialogFragment {
         b.layoutInfoDetails.removeAllViews();
         LayoutInflater inflater = getLayoutInflater();
         for (int i = 0; i < labels.size(); i++) {
-            ItemInfoDetailBinding row = ItemInfoDetailBinding.inflate(inflater, b.layoutInfoDetails, true);
+            ItemInfoGenericSheetBinding row = ItemInfoGenericSheetBinding.inflate(inflater, b.layoutInfoDetails, true);
             row.textDetailLabel.setText(labels.get(i));
             row.textDetailValue.setText(values.get(i));
         }

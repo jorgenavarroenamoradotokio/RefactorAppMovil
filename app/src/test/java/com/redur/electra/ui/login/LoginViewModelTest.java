@@ -45,7 +45,7 @@ public class LoginViewModelTest {
         LoginFormState result = viewModel.onLoginClicked("usuario", "secreto");
 
         assertTrue(result.isValid());
-        assertTrue(viewModel.getLoginState().getValue() instanceof UiState.Success);
+        assertEquals(new UiState.Success<>("usuario"), viewModel.getLoginState().getValue());
     }
 
     @Test

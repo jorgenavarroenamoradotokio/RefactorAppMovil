@@ -12,4 +12,10 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home" />
 
+    <fragment
+        android:id="@+id/nav_piece_dock"
+        android:name="com.redur.electra.ui.piece.dock.DockFragment"
+        android:label="@string/dock_label"
+        tools:layout="@layout/fragment_piece_dock" />
+
 </navigation>
