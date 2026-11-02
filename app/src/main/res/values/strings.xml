@@ -2,17 +2,30 @@
 <resources>
     <string name="app_name">Electra</string>
 
-    <!-- Inicio -->
-    <string name="home_greeting">Hello, %1$s</string>
-    <string name="home_hint">Open the menu to choose a task.</string>
+    <!-- Login Page -->
+    <string name="login_welcome">Welcome</string>
+    <string name="login_subtitle">Sign in to start working.</string>
+    <string name="login_username_hint">Username</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_username_required">Enter your username.</string>
+    <string name="login_password_required">Enter your password.</string>
+    <string name="login_forgot_password">Forgot your password?</string>
+    <string name="login_forgot_password_unavailable">Contact your administrator to reset your password.</string>
+    <string name="login_button">Sign in</string>
+    <string name="login_loading">Signing in…</string>
+    <string name="login_version">Version %1$s</string>
+
+    <!-- Acciones genericas-->
+    <string name="cancel">Cancel</string>
+    <string name="accept">Accept</string>
 
     <!-- Toolbar -->
     <string name="toolbar_environment">Connected environment</string>
     <string name="toolbar_profile">Profile</string>
 
-    <!-- Acciones genericas-->
-    <string name="cancel">Cancel</string>
-    <string name="accept">Accept</string>
+    <!-- Home Page -->
+    <string name="home_greeting">Hello, %1$s</string>
+    <string name="home_hint">Open the menu to choose a task.</string>
 
     <!-- Informacion del sistema -->
     <string name="system_title">Connected environment</string>
@@ -25,8 +38,7 @@
     <string name="logout_message">You will need to sign in again to keep working.</string>
     <string name="logout_confirm">Log out</string>
 
-
-    <!-- Perfil -->
+    <!-- Perfil Page -->
     <string name="profile_title">Profile</string>
     <string name="profile_navigate_up">Back to home</string>
     <string name="profile_plaza_label">Site</string>
