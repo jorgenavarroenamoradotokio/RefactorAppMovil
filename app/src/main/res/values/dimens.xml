@@ -24,6 +24,12 @@
     <dimen name="list_action_text_inset">56dp</dimen>
     <dimen name="panel_overlap">-28dp</dimen>
 
+    <!-- Movimiento -->
+    <dimen name="motion_enter_offset">24dp</dimen>
+
+    <!-- Login -->
+    <dimen name="login_brand_size">64dp</dimen>
+
     <!-- Perfil-->
     <dimen name="profile_avatar_size">64dp</dimen>
 </resources>

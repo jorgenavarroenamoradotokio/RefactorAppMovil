@@ -2,17 +2,30 @@
 <resources>
     <string name="app_name">Electra</string>
 
-    <!-- Inicio -->
-    <string name="home_greeting">Hola, %1$s</string>
-    <string name="home_hint">Abre el menú para elegir una tarea.</string>
+    <!-- Login Page -->
+    <string name="login_welcome">Bienvenido</string>
+    <string name="login_subtitle">Inicia sesión para empezar a trabajar.</string>
+    <string name="login_username_hint">Usuario</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_username_required">Introduce tu usuario.</string>
+    <string name="login_password_required">Introduce tu contraseña.</string>
+    <string name="login_forgot_password">¿Has olvidado la contraseña?</string>
+    <string name="login_forgot_password_unavailable">Contacta con tu administrador para restablecer la contraseña.</string>
+    <string name="login_button">Iniciar sesión</string>
+    <string name="login_loading">Iniciando sesión…</string>
+    <string name="login_version">Versión %1$s</string>
+
+    <!-- Acciones genericas-->
+    <string name="cancel">Cancelar</string>
+    <string name="accept">Aceptar</string>
 
     <!-- Toolbar -->
     <string name="toolbar_environment">Entorno conectado</string>
     <string name="toolbar_profile">Perfil</string>
 
-    <!-- Acciones genericas-->
-    <string name="cancel">Cancelar</string>
-    <string name="accept">Aceptar</string>
+    <!-- Home Page -->
+    <string name="home_greeting">Hola, %1$s</string>
+    <string name="home_hint">Abre el menú para elegir una tarea.</string>
 
     <!-- Informacion del sistema -->
     <string name="system_title">Entorno conectado</string>
@@ -20,13 +33,12 @@
     <string name="system_environment">Entorno</string>
     <string name="system_server">Servidor</string>
 
-
     <!-- Cerrar sesión -->
     <string name="logout_title">¿Cerrar sesión?</string>
     <string name="logout_message">Tendrás que volver a identificarte para seguir trabajando.</string>
     <string name="logout_confirm">Cerrar sesión</string>
 
-    <!-- Perfil -->
+    <!-- Perfil Page -->
     <string name="profile_title">Perfil</string>
     <string name="profile_navigate_up">Volver al inicio</string>
     <string name="profile_plaza_label">Plaza</string>
