@@ -210,7 +210,7 @@ public class LoginActivity extends BasicActivity<ActivityLoginBinding> {
         showError(getBinding().layoutPassword, state.passwordError());
     }
 
-    private void renderLogin(@NonNull UiState state) {
+    private void renderLogin(@NonNull UiState<String> state) {
         ActivityLoginBinding binding = getBinding();
         boolean isLoading = state instanceof UiState.Loading;
 
@@ -225,7 +225,7 @@ public class LoginActivity extends BasicActivity<ActivityLoginBinding> {
         binding.progress.setVisibility(isLoading ? View.VISIBLE : View.INVISIBLE);
 
         // Durante un reintento el aviso anterior se mantiene hasta conocer el nuevo resultado
-        if (state instanceof UiState.Error error) {
+        if (state instanceof UiState.Error<String> error) {
             showLoginError(error.message());
         } else if (!isLoading) {
             showLoginError(null);

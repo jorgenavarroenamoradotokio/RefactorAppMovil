@@ -68,7 +68,7 @@
             android:visibility="gone"
             tools:visibility="visible">
 
-            <include layout="@layout/item_info_detail" />
+            <include layout="@layout/item_info_generic_sheet" />
 
         </LinearLayout>
 

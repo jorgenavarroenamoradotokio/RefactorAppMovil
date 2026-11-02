@@ -34,6 +34,27 @@
         <item name="iconTint">@color/destructive_list_action</item>
     </style>
 
+    <!--
+        Acción flotante principal: mismo lenguaje que los botones principales de la app (verde
+        corporativo, radio M, 56dp, LabelLarge) y cede al pulsarla como ellos. Sombra fija: el
+        animador de pulsación sustituye al de elevación del FAB.
+    -->
+    <style name="Widget.Electra.ExtendedFab.Primary" parent="Widget.Material3.ExtendedFloatingActionButton.Icon.Primary">
+        <item name="android:minHeight">@dimen/button_height</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="iconTint">@color/white</item>
+        <item name="backgroundTint">@color/green_redur</item>
+        <item name="rippleColor">@color/green_redur</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Electra.Corner.M</item>
+        <item name="android:stateListAnimator">@animator/scale_on_press</item>
+        <item name="android:elevation">@dimen/fab_elevation</item>
+    </style>
+
+    <style name="ShapeAppearance.Electra.Corner.M" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/corner_radius_m</item>
+    </style>
 
 
 
