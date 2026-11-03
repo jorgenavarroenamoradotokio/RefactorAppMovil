@@ -11,6 +11,7 @@ import android.os.Looper;
 import androidx.lifecycle.Lifecycle;
 import androidx.test.core.app.ApplicationProvider;
 
+import com.redur.electra.core.scanner.BarcodeSymbology;
 import com.redur.electra.fake.FakeLifecycleOwner;
 
 import org.junit.Before;
@@ -28,6 +29,7 @@ import java.util.List;
 public class DatalogicScannerManagerTest {
 
     private final List<String> scans = new ArrayList<>();
+    private final List<BarcodeSymbology> symbologies = new ArrayList<>();
     private Application context;
     private FakeLifecycleOwner owner;
 
@@ -35,7 +37,7 @@ public class DatalogicScannerManagerTest {
     public void setUp() {
         context = ApplicationProvider.getApplicationContext();
         owner = new FakeLifecycleOwner();
-        owner.getLifecycle().addObserver(new DatalogicScannerManager(context, scans::add));
+        owner.getLifecycle().addObserver(new DatalogicScannerManager(context, this::onScan));
         owner.moveTo(Lifecycle.State.RESUMED);
     }
 
@@ -68,6 +70,45 @@ public class DatalogicScannerManagerTest {
         send(datalogicIntent().putExtra(DatalogicScannerManager.EXTRA_BARCODE_STRING, "B0001"));
 
         assertTrue(scans.isEmpty());
+    }
+
+    @Test
+    public void tipoCode128_seEntregaComoCode128() {
+        send(datalogicIntent()
+                .putExtra(DatalogicScannerManager.EXTRA_BARCODE_STRING, "B0001")
+                .putExtra(DatalogicScannerManager.EXTRA_BARCODE_TYPE, "CODE128"));
+
+        assertEquals(List.of(BarcodeSymbology.CODE_128), symbologies);
+    }
+
+    @Test
+    public void tipoGs1128_seEntregaComoCode128() {
+        send(datalogicIntent()
+                .putExtra(DatalogicScannerManager.EXTRA_BARCODE_STRING, "B0001")
+                .putExtra(DatalogicScannerManager.EXTRA_BARCODE_TYPE, "GS1_128"));
+
+        assertEquals(List.of(BarcodeSymbology.CODE_128), symbologies);
+    }
+
+    @Test
+    public void otroTipo_seEntregaComoOtro() {
+        send(datalogicIntent()
+                .putExtra(DatalogicScannerManager.EXTRA_BARCODE_STRING, "B0001")
+                .putExtra(DatalogicScannerManager.EXTRA_BARCODE_TYPE, "QRCODE"));
+
+        assertEquals(List.of(BarcodeSymbology.OTHER), symbologies);
+    }
+
+    @Test
+    public void sinTipoInformado_seEntregaComoDesconocido() {
+        send(datalogicIntent().putExtra(DatalogicScannerManager.EXTRA_BARCODE_STRING, "B0001"));
+
+        assertEquals(List.of(BarcodeSymbology.UNKNOWN), symbologies);
+    }
+
+    private void onScan(String barcode, BarcodeSymbology symbology) {
+        scans.add(barcode);
+        symbologies.add(symbology);
     }
 
     /** Como lo envía el Intent Wedge de Datalogic: acción y categoría por defecto. */

@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Solicitud de permisos de camara, la cámara no es obligatoria para instalar la app-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <application
         android:name=".ElectraApp"
         android:allowBackup="true"
@@ -36,6 +44,11 @@
             android:name=".ui.profile.ProfileActivity"
             android:exported="false"
             android:parentActivityName=".ui.home.HomeActivity" />
+
+        <!-- Visor de la cámara (zxing): sigue la orientación del terminal en lugar de forzar horizontal -->
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            tools:remove="android:screenOrientation" />
     </application>
 
 </manifest>

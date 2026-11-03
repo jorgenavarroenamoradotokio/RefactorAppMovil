@@ -61,12 +61,15 @@
     <string name="profile_log_send_by_email">Send by email</string>
     <string name="profile_log_email_body">Activity log attached. It could not be sent from the app.</string>
 
+    <!-- Scanner -->
+    <string name="scanner_camera">Scan</string>
+    <string name="scanner_camera_description">Scan the barcode with the camera</string>
+    <string name="scanner_camera_prompt">Fit the barcode inside the frame</string>
+    <string name="scanner_camera_denied">Allow camera access to scan barcodes</string>
+    <string name="scanner_camera_settings">Settings</string>
+
     <!-- Dock Page -->
     <string name="dock_barcode_label">Package</string>
-    <string name="dock_scan_camera">Scan</string>
-    <string name="dock_scan_camera_description">Scan the package with the camera</string>
-    <string name="dock_scan_prompt">Fit the package barcode inside the frame</string>
-    <string name="dock_camera_denied">Allow camera access to scan the package</string>
     <string name="dock_label">Dock</string>
     <string name="dock_destination">hub %1$s · postcode %2$s · %3$s</string>
     <string name="dock_description">Dock %1$s. Hub %2$s, postcode %3$s, %4$s</string>
@@ -74,6 +77,9 @@
     <string name="dock_waiting">Its exit dock will appear here</string>
     <string name="dock_loading">Looking up the dock…</string>
     <string name="dock_not_found_title">This package has no dock assigned</string>
+    <string name="dock_not_found">Check the label or read another package</string>
+    <string name="dock_invalid_barcode_title">This is not a package barcode</string>
+    <string name="dock_invalid_barcode">The package barcode is a Code 128 with %1$d characters. Read the label of the package again</string>
     <string name="dock_error_title">The dock could not be looked up</string>
     <string name="dock_retry">Try again</string>
     <string name="dock_cancel">Cancel</string>

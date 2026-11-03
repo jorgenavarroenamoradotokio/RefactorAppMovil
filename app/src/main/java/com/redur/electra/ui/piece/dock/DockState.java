@@ -9,7 +9,14 @@ import java.util.Objects;
 
 public sealed interface DockState permits
         DockState.Found,
-        DockState.NotFound {
+        DockState.NotFound,
+        DockState.InvalidBarcode {
+
+    /**
+     * CB leído al que corresponde el resultado.
+     */
+    @NonNull
+    String barcode();
 
     /**
      * Muelle del bulto: la lectura se puede grabar.
@@ -22,10 +29,19 @@ public sealed interface DockState permits
     }
 
     /**
-     * El bulto no tiene muelle asignado. Se puede leer otro.
+     * El bulto no existe o no tiene muelle asignado. Se puede leer otro.
      */
     record NotFound(@NonNull String barcode) implements DockState {
         public NotFound {
+            Objects.requireNonNull(barcode, "barcode");
+        }
+    }
+
+    /**
+     * La lectura no es un CB de bulto (longitud o tipo de código): no se consulta el muelle.
+     */
+    record InvalidBarcode(@NonNull String barcode) implements DockState {
+        public InvalidBarcode {
             Objects.requireNonNull(barcode, "barcode");
         }
     }

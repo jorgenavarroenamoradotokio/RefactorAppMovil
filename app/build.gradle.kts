@@ -6,7 +6,7 @@ plugins {
 }
 
 val appVersionCode = providers.gradleProperty("electra.versionCode").get().toInt()
-val appVersionName = providers.gradleProperty("electra.versionName").get()
+val appVersionName: String = providers.gradleProperty("electra.versionName").get()
 
 enum class LogLevel(val priority: String) {
     VERBOSE("android.util.Log.VERBOSE"),
@@ -40,7 +40,7 @@ val environments = listOf(
         name = "dev",
         isRelease = false,
         appName = "Electra DEV",
-        baseUrl = "http://192.168.1.17:8085/",
+        baseUrl = "http://192.168.1.17:9091/",
         logging = Logging(toLogcat = true, toFile = true, minLevel = LogLevel.VERBOSE),
     ),
     Environment(
@@ -85,6 +85,7 @@ android {
     defaultConfig {
         applicationId = "com.redur.electra"
         minSdk = 29
+        targetSdk = 36
         versionCode = appVersionCode
         versionName = appVersionName
 

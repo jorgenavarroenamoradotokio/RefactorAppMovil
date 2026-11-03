@@ -7,10 +7,12 @@ import android.content.IntentFilter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.redur.electra.core.scanner.BarcodeSymbology;
 import com.redur.electra.core.scanner.BroadcastScannerManager;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -25,6 +27,12 @@ public class HoneywellScannerManager extends BroadcastScannerManager {
     static final String EXTRA_DATA = "data";
     static final String EXTRA_DATA_BYTES = "dataBytes";
     static final String EXTRA_CHARSET = "charset";
+    /** Identificador AIM: "]C" seguido del modificador es la familia Code 128 (con GS1-128). */
+    static final String EXTRA_AIM_ID = "aimId";
+    /** Code ID propio de Honeywell: 'j' es Code 128 e 'I' GS1-128. */
+    static final String EXTRA_CODE_ID = "codeId";
+    private static final String AIM_CODE_128_PREFIX = "]C";
+    private static final Set<String> CODE_IDS_CODE_128 = Set.of("j", "I");
 
     public HoneywellScannerManager(@NonNull Context context, @NonNull ScanListener listener) {
         super(context, listener);
@@ -49,6 +57,20 @@ public class HoneywellScannerManager extends BroadcastScannerManager {
             return null;
         }
         return new String(bytes, resolveCharset(intent.getStringExtra(EXTRA_CHARSET)));
+    }
+
+    @NonNull
+    @Override
+    protected BarcodeSymbology extractSymbology(@NonNull Intent intent) {
+        String aimId = intent.getStringExtra(EXTRA_AIM_ID);
+        if (aimId != null && !aimId.isEmpty()) {
+            return aimId.startsWith(AIM_CODE_128_PREFIX) ? BarcodeSymbology.CODE_128 : BarcodeSymbology.OTHER;
+        }
+        String codeId = intent.getStringExtra(EXTRA_CODE_ID);
+        if (codeId != null && !codeId.isEmpty()) {
+            return CODE_IDS_CODE_128.contains(codeId) ? BarcodeSymbology.CODE_128 : BarcodeSymbology.OTHER;
+        }
+        return BarcodeSymbology.UNKNOWN;
     }
 
     @NonNull

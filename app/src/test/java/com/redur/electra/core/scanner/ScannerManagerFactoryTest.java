@@ -32,7 +32,7 @@ public class ScannerManagerFactoryTest {
     public void terminalHoneywell_usaElEscanerHoneywell() {
         ShadowBuild.setManufacturer("Honeywell");
 
-        HardwareScannerManager manager = factory.create(barcode -> { });
+        HardwareScannerManager manager = factory.create((barcode, symbology) -> { });
 
         assertTrue(manager instanceof HoneywellScannerManager);
         assertTrue(manager.isAvailable());
@@ -42,7 +42,7 @@ public class ScannerManagerFactoryTest {
     public void terminalDatalogic_usaElEscanerDatalogic() {
         ShadowBuild.setManufacturer("Datalogic");
 
-        HardwareScannerManager manager = factory.create(barcode -> { });
+        HardwareScannerManager manager = factory.create((barcode, symbology) -> { });
 
         assertTrue(manager instanceof DatalogicScannerManager);
         assertTrue(manager.isAvailable());
@@ -52,7 +52,7 @@ public class ScannerManagerFactoryTest {
     public void fabricanteDesconocido_noHayEscanerHardware() {
         ShadowBuild.setManufacturer("Google");
 
-        HardwareScannerManager manager = factory.create(barcode -> { });
+        HardwareScannerManager manager = factory.create((barcode, symbology) -> { });
 
         assertTrue(manager instanceof NoOpScannerManager);
         assertFalse(manager.isAvailable());
@@ -62,6 +62,6 @@ public class ScannerManagerFactoryTest {
     public void fabricanteNulo_noHayEscanerHardware() {
         ShadowBuild.setManufacturer(null);
 
-        assertFalse(factory.create(barcode -> { }).isAvailable());
+        assertFalse(factory.create((barcode, symbology) -> { }).isAvailable());
     }
 }

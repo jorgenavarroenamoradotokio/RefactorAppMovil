@@ -11,6 +11,7 @@ import android.os.Looper;
 import androidx.lifecycle.Lifecycle;
 import androidx.test.core.app.ApplicationProvider;
 
+import com.redur.electra.core.scanner.BarcodeSymbology;
 import com.redur.electra.fake.FakeLifecycleOwner;
 
 import org.junit.Before;
@@ -28,6 +29,7 @@ import java.util.List;
 public class HoneywellScannerManagerTest {
 
     private final List<String> scans = new ArrayList<>();
+    private final List<BarcodeSymbology> symbologies = new ArrayList<>();
     private Application context;
     private FakeLifecycleOwner owner;
 
@@ -35,7 +37,7 @@ public class HoneywellScannerManagerTest {
     public void setUp() {
         context = ApplicationProvider.getApplicationContext();
         owner = new FakeLifecycleOwner();
-        owner.getLifecycle().addObserver(new HoneywellScannerManager(context, scans::add));
+        owner.getLifecycle().addObserver(new HoneywellScannerManager(context, this::onScan));
         owner.moveTo(Lifecycle.State.RESUMED);
     }
 
@@ -91,6 +93,47 @@ public class HoneywellScannerManagerTest {
                 .putExtra(HoneywellScannerManager.EXTRA_DATA, "B0001"));
 
         assertEquals(List.of("B0001"), scans);
+    }
+
+    @Test
+    public void aimIdDeCode128_seEntregaComoCode128() {
+        send(new Intent(HoneywellScannerManager.ACTION)
+                .putExtra(HoneywellScannerManager.EXTRA_DATA, "B0001")
+                .putExtra(HoneywellScannerManager.EXTRA_AIM_ID, "]C0"));
+
+        assertEquals(List.of(BarcodeSymbology.CODE_128), symbologies);
+    }
+
+    @Test
+    public void aimIdDeOtroTipo_seEntregaComoOtro() {
+        send(new Intent(HoneywellScannerManager.ACTION)
+                .putExtra(HoneywellScannerManager.EXTRA_DATA, "B0001")
+                .putExtra(HoneywellScannerManager.EXTRA_AIM_ID, "]Q1")
+                .putExtra(HoneywellScannerManager.EXTRA_CODE_ID, "j"));
+
+        assertEquals(List.of(BarcodeSymbology.OTHER), symbologies);
+    }
+
+    @Test
+    public void sinAimId_seUsaElCodeIdDeHoneywell() {
+        send(new Intent(HoneywellScannerManager.ACTION)
+                .putExtra(HoneywellScannerManager.EXTRA_DATA, "B0001")
+                .putExtra(HoneywellScannerManager.EXTRA_CODE_ID, "j"));
+
+        assertEquals(List.of(BarcodeSymbology.CODE_128), symbologies);
+    }
+
+    @Test
+    public void sinTipoInformado_seEntregaComoDesconocido() {
+        send(new Intent(HoneywellScannerManager.ACTION)
+                .putExtra(HoneywellScannerManager.EXTRA_DATA, "B0001"));
+
+        assertEquals(List.of(BarcodeSymbology.UNKNOWN), symbologies);
+    }
+
+    private void onScan(String barcode, BarcodeSymbology symbology) {
+        scans.add(barcode);
+        symbologies.add(symbology);
     }
 
     private void send(Intent intent) {
