@@ -32,7 +32,7 @@ public class ActivityLifecycleLogger implements Application.ActivityLifecycleCal
 
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
-        Timber.i("[NAV] %s en primer plano", name(activity));
+        Timber.d("[NAV] %s en primer plano", name(activity));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ActivityLifecycleLogger implements Application.ActivityLifecycleCal
 
     @Override
     public void onActivityStopped(@NonNull Activity activity) {
-        Timber.i("[NAV] %s en segundo plano", name(activity));
+        Timber.d("[NAV] %s en segundo plano", name(activity));
     }
 
     @Override

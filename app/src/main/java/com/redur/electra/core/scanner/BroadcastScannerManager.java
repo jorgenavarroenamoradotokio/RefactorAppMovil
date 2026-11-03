@@ -51,6 +51,10 @@ public abstract class BroadcastScannerManager implements HardwareScannerManager 
     @Nullable
     protected abstract String extractBarcode(@NonNull Intent intent);
 
+    /** Tipo de código según los extras del fabricante; {@link BarcodeSymbology#UNKNOWN} si no lo indica. */
+    @NonNull
+    protected abstract BarcodeSymbology extractSymbology(@NonNull Intent intent);
+
     @Override
     public final boolean isAvailable() {
         return true;
@@ -87,8 +91,9 @@ public abstract class BroadcastScannerManager implements HardwareScannerManager 
             return;
         }
 
-        Timber.i("Código detectado: %s", barcode);
-        listener.onScanReceived(barcode);
+        BarcodeSymbology symbology = extractSymbology(intent);
+        Timber.i("Código detectado: %s (%s)", barcode, symbology);
+        listener.onScanReceived(barcode, symbology);
     }
 
     @SuppressWarnings("deprecation")

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Lector de CB reutilizable: se coloca encima de la zona de contenido de la pantalla. No captura
+    toques fuera del botón de cámara, así que el contenido de debajo sigue siendo usable.
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.scanner.ScannerFragment">
+
+    <!--
+        Captura del escáner que teclea el CB y termina con Intro: no se ve ni lo lee TalkBack,
+        solo mantiene el foco. El fragment desactiva el teclado en pantalla.
+    -->
+    <EditText
+        android:id="@+id/input_scanner_barcode"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:alpha="0"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:imeOptions="actionSearch"
+        android:importantForAccessibility="no"
+        android:importantForAutofill="no"
+        android:inputType="textNoSuggestions|textCapCharacters"
+        android:maxLines="1"
+        tools:ignore="LabelFor" />
+
+    <!-- Solo en terminales sin escáner hardware: abre la cámara para leer el CB -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_scanner_camera"
+        style="@style/Widget.Electra.ExtendedFab.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/spacing_m"
+        android:contentDescription="@string/scanner_camera_description"
+        android:text="@string/scanner_camera"
+        android:visibility="gone"
+        app:icon="@drawable/ic_app_barcode_scanner"
+        tools:visibility="visible" />
+
+</FrameLayout>

@@ -29,6 +29,9 @@
     <!-- Animaciones -->
     <dimen name="motion_enter_offset">24dp</dimen>
 
+    <!-- Escáner: hueco bajo el contenido para que el botón de cámara no tape el final -->
+    <dimen name="scanner_fab_clearance">88dp</dimen>
+
     <!-- Login -->
     <dimen name="login_brand_size">64dp</dimen>
 

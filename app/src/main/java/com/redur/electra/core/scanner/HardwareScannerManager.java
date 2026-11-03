@@ -9,7 +9,7 @@ public interface HardwareScannerManager extends DefaultLifecycleObserver {
     boolean isAvailable();
     interface ScanListener {
         @MainThread
-        void onScanReceived(@NonNull String barcode);
+        void onScanReceived(@NonNull String barcode, @NonNull BarcodeSymbology symbology);
     }
 
 }

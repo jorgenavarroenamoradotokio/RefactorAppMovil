@@ -2,6 +2,7 @@ package com.redur.electra.di;
 
 import com.redur.electra.BuildConfig;
 import com.redur.electra.core.logger.SensitiveAwareHttpLoggingInterceptor;
+import com.redur.electra.data.remote.api.PieceApiService;
 
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -47,5 +48,11 @@ public final class NetworkModule {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+
+    @Provides
+    @Singleton
+    static PieceApiService providePieceApiService(Retrofit retrofit) {
+        return retrofit.create(PieceApiService.class);
     }
 }
